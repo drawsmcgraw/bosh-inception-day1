@@ -67,7 +67,7 @@ resource "aws_iam_role_policy_attachment" "director-attach" {
 
 resource "aws_iam_instance_profile" "director_profile" {
     name = "director_profile"
-    roles = ["${aws_iam_role.director.name}"]
+    role = "${aws_iam_role.director.name}"
 }
 
 resource "aws_instance" "bastion" {
@@ -85,7 +85,7 @@ resource "aws_instance" "bastion" {
 
   connection {
     user = "ubuntu"
-    key_file = "${var.aws_key_path}"
+    private_key = "${file("${var.aws_key_path}")}"
   }
 
   provisioner "file" {

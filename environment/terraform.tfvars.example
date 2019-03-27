@@ -3,3 +3,12 @@ aws_secret_key = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 aws_key_path = "~/.ssh/bosh.pem"
 aws_key_name = "bosh"
 aws_region = "us-east-1"
+
+# m3.xlarge is not supported in us-east-1a. The following error is thrown:
+# aws_instance.bastion: Error launching source instance: Unsupported: Your
+# requested instance type (m3.xlarge) is not supported in your requested
+# Availability Zone (us-east-1a). Please retry your request by not specifying
+# an Availability Zone or choosing us-east-1c, us-east-1d, us-east-1e, us-east-1b.
+#
+# So we specify a different AZ for the bastion to live.
+aws_bastion_az = "us-east-1d"

@@ -115,6 +115,7 @@ resource "aws_eip" "nat" {
 # Public subnets
 
 resource "aws_subnet" "bastion" {
+        availability_zone = "${var.aws_bastion_az}"
 	vpc_id = "${aws_vpc.default.id}"
 	cidr_block = "${var.network}.0.0/24"
 	tags {
